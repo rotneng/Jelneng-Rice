@@ -134,7 +134,7 @@ const Hero = () => {
     },
     statsGrid: {
       display: "flex",
-      flexWrap: "wrap", // Allows wrapping for mobile/tablet
+      flexWrap: "wrap", 
       backgroundColor: "white",
       borderRadius: "24px",
       overflow: "hidden",
@@ -142,7 +142,7 @@ const Hero = () => {
       border: "1px solid rgba(0,0,0,0.03)",
     },
     statBox: {
-      flex: isTablet ? "1 1 50%" : "1", // 2x2 on tablets, 1 row on desktop
+      flex: isTablet ? "1 1 50%" : "1", 
       padding: isMobile ? "30px 15px" : "45px 20px",
       textAlign: "center",
       borderRight: isTablet ? "none" : "1px solid #F0F0F0",
@@ -255,7 +255,6 @@ const Hero = () => {
               key={idx}
               style={{
                 ...styles.statBox,
-                // On small phones, take full width. On tablets, 50%. On desktop, 25%.
                 flex:
                   windowWidth <= 480 ? "1 1 100%" : isTablet ? "1 1 50%" : "1",
               }}

@@ -6,7 +6,6 @@ const products = [
     id: 1,
     name: "Long Grain Parboiled",
     weight: "50kg / 25kg / 10kg",
-    // Detailed texture of golden-hued parboiled rice
     image:
       "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=1000",
     tag: "Best Seller",
@@ -15,7 +14,6 @@ const products = [
     id: 2,
     name: "Premium Basmati",
     weight: "5kg / 2kg",
-    // Clean, high-end look of white basmati grains
     image:
       "https://images.unsplash.com/photo-1723475158232-819e29803f4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmFzbWF0aSUyMHJpY2V8ZW58MHx8MHx8fDA%3D",
     tag: "Export Quality",
@@ -24,7 +22,6 @@ const products = [
     id: 3,
     name: "Organic Brown Rice",
     weight: "5kg / 1kg",
-    // Earthy, natural brown rice texture
     image:
       "https://images.unsplash.com/photo-1561767782-d8e3aa77ef77?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJyb3duJTIwcmljZXxlbnwwfHwwfHx8MA%3D%3D",
     tag: "Health Choice",
@@ -33,7 +30,6 @@ const products = [
     id: 4,
     name: "Rice Flour",
     weight: "5kg / 10kg",
-    // Earthy, natural brown rice texture
     image:
       "https://images.unsplash.com/photo-1586137712370-9b450509c587?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmljZSUyMGZsb3VyfGVufDB8fDB8fHww",
     tag: "Bakers Choice",
@@ -57,7 +53,6 @@ const ProductsSection = () => {
         overflow: "hidden",
       }}
     >
-      {/* SECTION HEADER */}
       <div
         style={{ textAlign: "center", marginBottom: "80px", padding: "0 5%" }}
       >
@@ -106,7 +101,6 @@ const ProductsSection = () => {
         />
       </div>
 
-      {/* PRODUCTS GRID */}
       <div
         style={{
           display: "grid",
@@ -126,7 +120,6 @@ const ProductsSection = () => {
             viewport={{ once: true }}
             className="product-card"
           >
-            {/* Image Container */}
             <div
               style={{
                 position: "relative",
@@ -150,7 +143,6 @@ const ProductsSection = () => {
                 }}
               />
 
-              {/* Tag Over Image */}
               <div
                 style={{
                   position: "absolute",
@@ -171,7 +163,6 @@ const ProductsSection = () => {
                 {product.tag}
               </div>
 
-              {/* Hover Frame Effect */}
               <div
                 className="hover-frame"
                 style={{
@@ -187,7 +178,6 @@ const ProductsSection = () => {
               />
             </div>
 
-            {/* Typography Section */}
             <div
               style={{
                 marginTop: "35px",
@@ -246,7 +236,6 @@ const ProductsSection = () => {
         ))}
       </div>
 
-      {/* Global CSS for the Hover Reveal */}
       <style>
         {`
           .product-card:hover .hover-frame {

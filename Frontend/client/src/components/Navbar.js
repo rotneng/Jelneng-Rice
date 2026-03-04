@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,11 +13,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const checkDevice = () => {
-      // 480px is the sweet spot: covers all Pro Max/Ultra phones 
-      // but is much smaller than an iPad (768px+)
       setIsPhone(window.innerWidth <= 480);
     };
-    
+
     checkDevice();
     window.addEventListener("resize", checkDevice);
     return () => window.removeEventListener("resize", checkDevice);
@@ -56,7 +59,7 @@ const Navbar = () => {
         borderBottom: `1px solid ${colors.gold}33`,
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        transition: "height 0.3s ease"
+        transition: "height 0.3s ease",
       }}
     >
       <div
@@ -71,25 +74,34 @@ const Navbar = () => {
           padding: "0 5%",
         }}
       >
-        {/* Logo */}
         <motion.a href="#home" style={{ textDecoration: "none" }}>
-          <span style={{ 
-            fontFamily: "serif", 
-            fontSize: isPhone ? "1.1rem" : "1.3rem", 
-            color: colors.white, 
-            fontWeight: "700" 
-          }}>
-            Jelneng <span style={{ color: colors.gold, fontWeight: "300", fontStyle: "italic" }}>Rice</span>
+          <span
+            style={{
+              fontFamily: "serif",
+              fontSize: isPhone ? "1.1rem" : "1.3rem",
+              color: colors.white,
+              fontWeight: "700",
+            }}
+          >
+            Jelneng{" "}
+            <span
+              style={{
+                color: colors.gold,
+                fontWeight: "300",
+                fontStyle: "italic",
+              }}
+            >
+              Rice
+            </span>
           </span>
         </motion.a>
 
-        {/* Desktop View (Ipads & Laptops) */}
         {!isPhone && (
           <div style={{ display: "flex", gap: "10px" }}>
             {navLinks.map((link) => (
-              <motion.a 
-                key={link.name} 
-                href={link.href} 
+              <motion.a
+                key={link.name}
+                href={link.href}
                 whileHover={{ color: colors.gold }}
                 style={{
                   fontSize: "11px",
@@ -99,7 +111,7 @@ const Navbar = () => {
                   textTransform: "uppercase",
                   letterSpacing: "0.15em",
                   fontWeight: "600",
-                  transition: "color 0.2s ease"
+                  transition: "color 0.2s ease",
                 }}
               >
                 {link.name}
@@ -108,36 +120,58 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Hamburger Icon (Phones Only) */}
         {isPhone && (
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "10px" }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "10px",
+            }}
           >
-            <motion.div 
+            <motion.div
               animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 6 : 0 }}
-              style={{ width: "24px", height: "2px", background: colors.gold, margin: "5px 0" }} 
+              style={{
+                width: "24px",
+                height: "2px",
+                background: colors.gold,
+                margin: "5px 0",
+              }}
             />
-            <motion.div 
+            <motion.div
               animate={{ opacity: isOpen ? 0 : 1 }}
-              style={{ width: "24px", height: "2px", background: colors.gold, margin: "5px 0" }} 
+              style={{
+                width: "24px",
+                height: "2px",
+                background: colors.gold,
+                margin: "5px 0",
+              }}
             />
-            <motion.div 
+            <motion.div
               animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }}
-              style={{ width: "24px", height: "2px", background: colors.gold, margin: "5px 0" }} 
+              style={{
+                width: "24px",
+                height: "2px",
+                background: colors.gold,
+                margin: "5px 0",
+              }}
             />
           </button>
         )}
       </div>
 
-      {/* Mobile Dropdown */}
       <AnimatePresence>
         {isOpen && isPhone && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            style={{ width: "100%", backgroundColor: colors.dark, overflow: "hidden" }}
+            style={{
+              width: "100%",
+              backgroundColor: colors.dark,
+              overflow: "hidden",
+            }}
           >
             {navLinks.map((link) => (
               <a
@@ -153,7 +187,7 @@ const Navbar = () => {
                   fontSize: "13px",
                   fontWeight: "600",
                   textTransform: "uppercase",
-                  letterSpacing: "0.1em"
+                  letterSpacing: "0.1em",
                 }}
               >
                 {link.name}

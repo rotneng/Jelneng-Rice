@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import AboutImage from "../Images/About.png"; 
+import AboutImage from "../Images/About.png";
 
 const AboutUs = () => {
   const colors = {
@@ -21,8 +21,6 @@ const AboutUs = () => {
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 5%" }}>
-        
-        {/* --- NEW SECTION HEADER --- */}
         <div style={{ textAlign: "center", marginBottom: "80px" }}>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -55,32 +53,38 @@ const AboutUs = () => {
               margin: 0,
             }}
           >
-            Our Story & <span style={{ color: colors.gold, fontStyle: "italic", fontWeight: "300" }}>Legacy</span>
+            Our Story &{" "}
+            <span
+              style={{
+                color: colors.gold,
+                fontStyle: "italic",
+                fontWeight: "300",
+              }}
+            >
+              Legacy
+            </span>
           </motion.h2>
-          <motion.div 
+          <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: "80px" }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            style={{ 
-              height: "3px", 
-              backgroundColor: colors.gold, 
-              margin: "25px auto 0" 
-            }} 
+            style={{
+              height: "3px",
+              backgroundColor: colors.gold,
+              margin: "25px auto 0",
+            }}
           />
         </div>
 
-        {/* Main Grid Wrapper */}
         <div
           style={{
             display: "grid",
-            // Adjusted grid for better mobile-to-desktop transition
             gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             alignItems: "center",
             gap: "80px",
           }}
         >
-          {/* LEFT: IMAGE SIDE */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -112,7 +116,6 @@ const AboutUs = () => {
               />
             </motion.div>
 
-            {/* Experience Badge */}
             <motion.div
               initial={{ scale: 0, rotate: -20 }}
               whileInView={{ scale: 1, rotate: 0 }}
@@ -134,17 +137,25 @@ const AboutUs = () => {
                 alignItems: "center",
                 border: `8px solid ${colors.cream}`,
                 textAlign: "center",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
+                boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
               }}
             >
-              <span style={{ fontSize: "36px", fontWeight: "bold", color: colors.gold }}>6+</span>
+              <span
+                style={{
+                  fontSize: "36px",
+                  fontWeight: "bold",
+                  color: colors.gold,
+                }}
+              >
+                6+
+              </span>
               <span
                 style={{
                   fontSize: "10px",
                   textTransform: "uppercase",
                   letterSpacing: "1px",
                   lineHeight: 1.2,
-                  width: "80px"
+                  width: "80px",
                 }}
               >
                 Years of Excellence
@@ -152,7 +163,6 @@ const AboutUs = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT: TEXT SIDE */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -197,9 +207,11 @@ const AboutUs = () => {
               }}
             >
               Our impact is felt across the entire value chain. With over{" "}
-              <strong style={{ color: colors.dark }}>20 Million metric tonnes</strong> processed, 
-              we empower local farmers and provide food security for government 
-              agencies and families nationwide.
+              <strong style={{ color: colors.dark }}>
+                20 Million metric tonnes
+              </strong>{" "}
+              processed, we empower local farmers and provide food security for
+              government agencies and families nationwide.
             </p>
 
             <motion.button
@@ -220,8 +232,8 @@ const AboutUs = () => {
                 gap: "12px",
                 transition: "color 0.3s ease",
               }}
-              onMouseEnter={(e) => e.target.style.color = colors.gold}
-              onMouseLeave={(e) => e.target.style.color = colors.dark}
+              onMouseEnter={(e) => (e.target.style.color = colors.gold)}
+              onMouseLeave={(e) => (e.target.style.color = colors.dark)}
             >
               Learn More About Us <span style={{ fontSize: "20px" }}>→</span>
             </motion.button>

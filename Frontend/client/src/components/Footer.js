@@ -18,7 +18,7 @@ const Footer = () => {
   return (
     <footer
       style={{
-        backgroundColor: "#050F0A", // Slightly darker than the main section for depth
+        backgroundColor: "#050F0A", 
         color: colors.white,
         padding: "100px 0 40px 0",
         borderTop: `1px solid ${colors.border}`,
@@ -26,7 +26,6 @@ const Footer = () => {
         overflow: "hidden",
       }}
     >
-      {/* Decorative Brand Accent */}
       <div
         style={{
           position: "absolute",
@@ -54,7 +53,6 @@ const Footer = () => {
           zIndex: 1,
         }}
       >
-        {/* Top Section */}
         <div
           style={{
             display: "grid",
@@ -63,7 +61,6 @@ const Footer = () => {
             marginBottom: "80px",
           }}
         >
-          {/* Brand Identity */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +101,6 @@ const Footer = () => {
             </p>
           </motion.div>
 
-          {/* Quick Links */}
           {[
             {
               title: "Navigation",
@@ -165,7 +161,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Bottom Bar */}
         <div
           style={{
             borderTop: `1px solid ${colors.border}`,

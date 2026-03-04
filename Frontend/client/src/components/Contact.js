@@ -1,115 +1,145 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const colors = {
-    dark: '#0A1E14',
-    light: '#C5A059',
-    white: '#FFFFFF',
-    border: 'rgba(255, 255, 255, 0.1)',
-    glass: 'rgba(255, 255, 255, 0.03)'
+    dark: "#0A1E14",
+    light: "#C5A059",
+    white: "#FFFFFF",
+    border: "rgba(255, 255, 255, 0.1)",
+    glass: "rgba(255, 255, 255, 0.03)",
   };
 
   return (
-    <section id="contact" style={{ 
-      backgroundColor: colors.dark, 
-      padding: '120px 0', 
-      position: 'relative', 
-      overflow: 'hidden' 
-    }}>
-      {/* Animated Ambient Light */}
-      <motion.div 
-        animate={{ 
+    <section
+      id="contact"
+      style={{
+        backgroundColor: colors.dark,
+        padding: "120px 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <motion.div
+        animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1] 
+          opacity: [0.1, 0.2, 0.1],
         }}
         transition={{ duration: 8, repeat: Infinity }}
         style={{
-          position: 'absolute',
-          top: '-10%',
-          right: '-5%',
-          width: '600px',
-          height: '600px',
+          position: "absolute",
+          top: "-10%",
+          right: "-5%",
+          width: "600px",
+          height: "600px",
           background: `radial-gradient(circle, ${colors.light}33 0%, transparent 70%)`,
-          filter: 'blur(80px)',
-          borderRadius: '50%',
-          pointerEvents: 'none'
+          filter: "blur(80px)",
+          borderRadius: "50%",
+          pointerEvents: "none",
         }}
       />
-      
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 24px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '80px',
-        position: 'relative',
-        zIndex: 2
-      }}>
-        
-        {/* Left Side: Content */}
-        <motion.div 
+
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 24px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: "80px",
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
         >
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
             style={{
               color: colors.light,
-              fontWeight: '800',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5em',
-              fontSize: '10px',
-              display: 'block',
-              marginBottom: '20px'
+              fontWeight: "800",
+              textTransform: "uppercase",
+              letterSpacing: "0.5em",
+              fontSize: "10px",
+              display: "block",
+              marginBottom: "20px",
             }}
           >
             Inquiries
           </motion.span>
-          
-          <h2 style={{ 
-            fontSize: 'clamp(2.5rem, 5vw, 4rem)', 
-            fontFamily: 'serif', 
-            fontWeight: 'bold', 
-            color: colors.white,
-            lineHeight: 1.1,
-            marginBottom: '32px'
-          }}>
+
+          <h2
+            style={{
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontFamily: "serif",
+              fontWeight: "bold",
+              color: colors.white,
+              lineHeight: 1.1,
+              marginBottom: "32px",
+            }}
+          >
             Cultivate the <br />
-            <span style={{ color: colors.light, fontStyle: 'italic' }}>Future</span> With Us
+            <span style={{ color: colors.light, fontStyle: "italic" }}>
+              Future
+            </span>{" "}
+            With Us
           </h2>
-          
-          <p style={{ 
-            color: 'rgba(255,255,255,0.6)', 
-            fontSize: '1.1rem', 
-            lineHeight: '1.8', 
-            maxWidth: '400px',
-            marginBottom: '48px'
-          }}>
-            From bulk distribution to sustainable agribusiness partnerships, we provide the gold standard of Nigerian rice.
+
+          <p
+            style={{
+              color: "rgba(255,255,255,0.6)",
+              fontSize: "1.1rem",
+              lineHeight: "1.8",
+              maxWidth: "400px",
+              marginBottom: "48px",
+            }}
+          >
+            From bulk distribution to sustainable agribusiness partnerships, we
+            provide the gold standard of Nigerian rice.
           </p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "40px" }}
+          >
             {[
-              { label: 'Headquarters', value: 'Jos, Plateau State, Nigeria' },
-              { label: 'Email Us', value: 'contact@jelnengrice.com' }
+              { label: "Headquarters", value: "Jos, Plateau State, Nigeria" },
+              { label: "Email Us", value: "contact@jelnengrice.com" },
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + (i * 0.1) }}
-                style={{ borderLeft: `1px solid ${colors.light}`, paddingLeft: '24px' }}
+                transition={{ delay: 0.4 + i * 0.1 }}
+                style={{
+                  borderLeft: `1px solid ${colors.light}`,
+                  paddingLeft: "24px",
+                }}
               >
-                <span style={{ color: colors.light, fontSize: '9px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
+                <span
+                  style={{
+                    color: colors.light,
+                    fontSize: "9px",
+                    fontWeight: "900",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.2em",
+                  }}
+                >
                   {item.label}
                 </span>
-                <p style={{ color: colors.white, fontSize: '1.2rem', marginTop: '4px', fontWeight: '300' }}>
+                <p
+                  style={{
+                    color: colors.white,
+                    fontSize: "1.2rem",
+                    marginTop: "4px",
+                    fontWeight: "300",
+                  }}
+                >
                   {item.value}
                 </p>
               </motion.div>
@@ -117,77 +147,78 @@ const Contact = () => {
           </div>
         </motion.div>
 
-        {/* Right Side: Glass Form */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
           style={{
             backgroundColor: colors.glass,
-            backdropFilter: 'blur(20px)',
-            padding: '48px',
-            borderRadius: '2px',
+            backdropFilter: "blur(20px)",
+            padding: "48px",
+            borderRadius: "2px",
             border: `1px solid ${colors.border}`,
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
           }}
         >
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-            {['Full Name', 'Email Address'].map((placeholder, i) => (
-              <div key={i} style={{ position: 'relative' }}>
-                <input 
-                  type="text" 
+          <form
+            style={{ display: "flex", flexDirection: "column", gap: "40px" }}
+          >
+            {["Full Name", "Email Address"].map((placeholder, i) => (
+              <div key={i} style={{ position: "relative" }}>
+                <input
+                  type="text"
                   placeholder={placeholder}
                   className="fine-input"
                   style={{
-                    width: '100%',
-                    background: 'transparent',
-                    border: 'none',
+                    width: "100%",
+                    background: "transparent",
+                    border: "none",
                     borderBottom: `1px solid ${colors.border}`,
-                    padding: '16px 0',
+                    padding: "16px 0",
                     color: colors.white,
-                    outline: 'none',
-                    fontSize: '14px',
-                    letterSpacing: '0.05em'
+                    outline: "none",
+                    fontSize: "14px",
+                    letterSpacing: "0.05em",
                   }}
                 />
                 <div className="input-focus-line" />
               </div>
             ))}
 
-            <div style={{ position: 'relative' }}>
-              <textarea 
-                placeholder="How can we partner?" 
+            <div style={{ position: "relative" }}>
+              <textarea
+                placeholder="How can we partner?"
                 rows="4"
                 className="fine-input"
                 style={{
-                  width: '100%',
-                  background: 'transparent',
-                  border: 'none',
+                  width: "100%",
+                  background: "transparent",
+                  border: "none",
                   borderBottom: `1px solid ${colors.border}`,
-                  padding: '16px 0',
+                  padding: "16px 0",
                   color: colors.white,
-                  outline: 'none',
-                  fontSize: '14px',
-                  resize: 'none'
+                  outline: "none",
+                  fontSize: "14px",
+                  resize: "none",
                 }}
               />
             </div>
 
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
                 backgroundColor: colors.light,
                 color: colors.dark,
-                border: 'none',
-                padding: '20px',
-                fontSize: '11px',
-                fontWeight: '900',
-                textTransform: 'uppercase',
-                letterSpacing: '0.3em',
-                cursor: 'pointer',
-                transition: 'all 0.4s ease'
+                border: "none",
+                padding: "20px",
+                fontSize: "11px",
+                fontWeight: "900",
+                textTransform: "uppercase",
+                letterSpacing: "0.3em",
+                cursor: "pointer",
+                transition: "all 0.4s ease",
               }}
             >
               Send Inquiry
