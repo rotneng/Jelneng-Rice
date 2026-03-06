@@ -9,14 +9,14 @@ const services = [
       "Pre-cleaning, paddy separation, whitening, grading, polishing, sorting and packaging.",
     icon: (
       <svg
-        width="60"
-        height="60"
+        width="50"
+        height="50"
         viewBox="0 0 60 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M50 40H40V30H20V40H10V10H20V20H40V10H50V40Z" fill="#1B5E20" />
-        <rect x="5" y="45" width="50" height="10" rx="2" fill="#1B5E20" />
+        <path d="M50 40H40V30H20V40H10V10H20V20H40V10H50V40Z" fill="#C5A059" />
+        <rect x="5" y="45" width="50" height="10" rx="2" fill="#C5A059" />
       </svg>
     ),
   },
@@ -27,32 +27,32 @@ const services = [
       "Nationwide delivery of our premium rice products to your doorstep.",
     icon: (
       <svg
-        width="60"
-        height="60"
+        width="50"
+        height="50"
         viewBox="0 0 60 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M5 25H35V45H5V25Z"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M35 30H45V45H35"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="15" cy="50" r="5" fill="#1B5E20" />
-        <circle cx="40" cy="50" r="5" fill="#1B5E20" />
+        <circle cx="15" cy="50" r="5" fill="#C5A059" />
+        <circle cx="40" cy="50" r="5" fill="#C5A059" />
         <path
           d="M10 20L15 25"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
         />
       </svg>
@@ -60,32 +60,32 @@ const services = [
   },
   {
     id: 3,
-    title: "Consulting Services",
+    title: "Agribusiness Consulting",
     description:
       "Expert advice on rice farming and agribusiness for optimal results.",
     icon: (
       <svg
-        width="60"
-        height="60"
+        width="50"
+        height="50"
         viewBox="0 0 60 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M30 15C35.5228 15 40 19.4772 40 25C40 30.5228 35.5228 35 30 35C24.4772 35 20 30.5228 20 25C20 19.4772 24.4772 15 30 15Z"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
         />
         <path
           d="M10 50C10 38.9543 18.9543 30 30 30C41.0457 30 50 38.9543 50 50"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
         />
         <path
           d="M45 15L50 20L45 25"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -94,13 +94,13 @@ const services = [
   },
   {
     id: 4,
-    title: "Rice Branding & Packaging",
+    title: "Branding & Packaging",
     description:
-      "Custom branding and packaging services for individuals, organizations and Government.",
+      "Custom branding and packaging services for individuals and organizations.",
     icon: (
       <svg
-        width="60"
-        height="60"
+        width="50"
+        height="50"
         viewBox="0 0 60 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -111,22 +111,22 @@ const services = [
           width="40"
           height="40"
           rx="4"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
         />
         <path
           d="M30 10V50"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
         />
         <path
           d="M10 30H50"
-          stroke="#1B5E20"
-          strokeWidth="4"
+          stroke="#C5A059"
+          strokeWidth="3"
           strokeLinecap="round"
         />
-        <circle cx="30" cy="30" r="5" fill="#1B5E20" />
+        <circle cx="30" cy="30" r="5" fill="#C5A059" />
       </svg>
     ),
   },
@@ -134,31 +134,53 @@ const services = [
 
 const ServicesSection = () => {
   const colors = {
-    darkGreen: "#1B5E20",
-    textGray: "#333333",
+    dark: "#0A1E14",
+    gold: "#C5A059",
+    textGray: "#4A4A4A",
     white: "#FFFFFF",
-    cream: "#F9F7F2",
+    cream: "#FDFCF8",
   };
 
   return (
-    <section style={{ backgroundColor: colors.white, padding: "100px 0" }}>
-      <div style={{ textAlign: "center", marginBottom: "80px" }}>
-        <h2
+    <section
+      id="services"
+      style={{ backgroundColor: colors.cream, padding: "120px 0" }}
+    >
+      <div
+        style={{ textAlign: "center", marginBottom: "80px", padding: "0 5%" }}
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           style={{
-            color: colors.darkGreen,
-            fontSize: "32px",
-            fontWeight: "bold",
-            marginBottom: "10px",
+            fontFamily: "serif",
+            fontSize: "clamp(32px, 5vw, 48px)",
+            color: colors.dark,
+            fontWeight: "700",
+            margin: 0,
           }}
         >
-          Our Services
-        </h2>
-        <div
+          Our{" "}
+          <span
+            style={{
+              color: colors.gold,
+              fontStyle: "italic",
+              fontWeight: "300",
+            }}
+          >
+            Services
+          </span>
+        </motion.h2>
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: "60px" }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
           style={{
-            width: "60px",
             height: "3px",
-            backgroundColor: colors.darkGreen,
-            margin: "0 auto",
+            backgroundColor: colors.gold,
+            margin: "25px auto 0",
           }}
         />
       </div>
@@ -167,10 +189,10 @@ const ServicesSection = () => {
         className="services-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "30px",
           padding: "0 5%",
-          maxWidth: "1400px",
+          maxWidth: "1300px",
           margin: "0 auto",
         }}
       >
@@ -181,28 +203,32 @@ const ServicesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
+            whileHover={{ y: -10 }}
             style={{
-              backgroundColor: colors.cream,
-              padding: "40px 20px",
-              borderRadius: "12px",
+              backgroundColor: colors.white,
+              padding: "50px 30px",
+              borderRadius: "15px",
               textAlign: "center",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.03)",
-              border: `1px solid ${colors.darkGreen}10`,
+              boxShadow: "0 15px 35px rgba(10, 30, 20, 0.05)",
+              border: `1px solid rgba(197, 160, 89, 0.1)`,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "flex-start",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
             }}
           >
-            <div style={{ marginBottom: "25px" }}>{service.icon}</div>
+            <div style={{ marginBottom: "30px", opacity: 0.9 }}>
+              {service.icon}
+            </div>
 
             <h3
               style={{
-                color: colors.darkGreen,
-                fontSize: "18px",
-                fontWeight: "bold",
-                marginBottom: "12px",
-                minHeight: "44px",
+                fontFamily: "serif",
+                color: colors.dark,
+                fontSize: "20px",
+                fontWeight: "700",
+                marginBottom: "15px",
+                minHeight: "50px",
                 display: "flex",
                 alignItems: "center",
               }}
@@ -213,9 +239,9 @@ const ServicesSection = () => {
             <p
               style={{
                 color: colors.textGray,
-                fontSize: "13.5px",
-                lineHeight: "1.5",
-                opacity: 0.8,
+                fontSize: "15px",
+                lineHeight: "1.7",
+                margin: 0,
               }}
             >
               {service.description}
