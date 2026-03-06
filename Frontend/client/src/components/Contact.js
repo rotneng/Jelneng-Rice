@@ -1,13 +1,51 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("idle");
+
   const colors = {
     dark: "#0A1E14",
     light: "#C5A059",
     white: "#FFFFFF",
     border: "rgba(255, 255, 255, 0.1)",
     glass: "rgba(255, 255, 255, 0.03)",
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: "General Inquiry",
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   return (
@@ -21,10 +59,7 @@ const Contact = () => {
       }}
     >
       <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 8, repeat: Infinity }}
         style={{
           position: "absolute",
@@ -54,13 +89,10 @@ const Contact = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+          <span
             style={{
               color: colors.light,
               fontWeight: "800",
@@ -72,7 +104,7 @@ const Contact = () => {
             }}
           >
             Inquiries
-          </motion.span>
+          </span>
 
           <h2
             style={{
@@ -111,11 +143,8 @@ const Contact = () => {
               { label: "Headquarters", value: "Jos, Plateau State, Nigeria" },
               { label: "Email Us", value: "contact@jelnengrice.com" },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + i * 0.1 }}
                 style={{
                   borderLeft: `1px solid ${colors.light}`,
                   paddingLeft: "24px",
@@ -142,74 +171,68 @@ const Contact = () => {
                 >
                   {item.value}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
           style={{
             backgroundColor: colors.glass,
             backdropFilter: "blur(20px)",
             padding: "48px",
             borderRadius: "2px",
             border: `1px solid ${colors.border}`,
-            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+            position: "relative",
           }}
         >
           <form
+            onSubmit={handleSubmit}
             style={{ display: "flex", flexDirection: "column", gap: "40px" }}
           >
-            {["Full Name", "Email Address"].map((placeholder, i) => (
-              <div key={i} style={{ position: "relative" }}>
-                <input
-                  type="text"
-                  placeholder={placeholder}
-                  className="fine-input"
-                  style={{
-                    width: "100%",
-                    background: "transparent",
-                    border: "none",
-                    borderBottom: `1px solid ${colors.border}`,
-                    padding: "16px 0",
-                    color: colors.white,
-                    outline: "none",
-                    fontSize: "14px",
-                    letterSpacing: "0.05em",
-                  }}
-                />
-                <div className="input-focus-line" />
-              </div>
-            ))}
+            <input
+              type="text"
+              required
+              placeholder="Full Name"
+              className="fine-input"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              style={inputStyle(colors)}
+            />
 
-            <div style={{ position: "relative" }}>
-              <textarea
-                placeholder="How can we partner?"
-                rows="4"
-                className="fine-input"
-                style={{
-                  width: "100%",
-                  background: "transparent",
-                  border: "none",
-                  borderBottom: `1px solid ${colors.border}`,
-                  padding: "16px 0",
-                  color: colors.white,
-                  outline: "none",
-                  fontSize: "14px",
-                  resize: "none",
-                }}
-              />
-            </div>
+            <input
+              type="email"
+              required
+              placeholder="Email Address"
+              className="fine-input"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              style={inputStyle(colors)}
+            />
+
+            <textarea
+              required
+              placeholder="How can we partner?"
+              rows="4"
+              className="fine-input"
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              style={{ ...inputStyle(colors), resize: "none" }}
+            />
 
             <motion.button
+              disabled={status === "loading"}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                backgroundColor: colors.light,
+                backgroundColor:
+                  status === "success" ? "#2E7D32" : colors.light,
                 color: colors.dark,
                 border: "none",
                 padding: "20px",
@@ -221,39 +244,48 @@ const Contact = () => {
                 transition: "all 0.4s ease",
               }}
             >
-              Send Inquiry
+              {status === "loading"
+                ? "Processing..."
+                : status === "success"
+                  ? "Inquiry Sent"
+                  : "Send Inquiry"}
             </motion.button>
+
+            {status === "error" && (
+              <p
+                style={{
+                  color: "#FF5252",
+                  fontSize: "12px",
+                  textAlign: "center",
+                  marginTop: "-20px",
+                }}
+              >
+                Error sending inquiry. Please try again.
+              </p>
+            )}
           </form>
         </motion.div>
       </div>
 
-      <style>
-        {`
-          .fine-input::placeholder {
-            color: rgba(255,255,255,0.2);
-            text-transform: uppercase;
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            transition: all 0.3s ease;
-          }
-
-          .fine-input:focus::placeholder {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-
-          .fine-input:focus {
-            border-bottom-color: #C5A059 !important;
-          }
-
-          @media (max-width: 375px) {
-            h2 { font-size: 2rem !important; }
-            section { padding: 60px 0 !important; }
-          }
-        `}
-      </style>
+      <style>{`
+        .fine-input::placeholder { color: rgba(255,255,255,0.2); text-transform: uppercase; font-size: 10px; letter-spacing: 0.2em; transition: all 0.3s ease; }
+        .fine-input:focus::placeholder { opacity: 0; transform: translateY(-10px); }
+        .fine-input:focus { border-bottom-color: #C5A059 !important; }
+      `}</style>
     </section>
   );
 };
+
+const inputStyle = (colors) => ({
+  width: "100%",
+  background: "transparent",
+  border: "none",
+  borderBottom: `1px solid ${colors.border}`,
+  padding: "16px 0",
+  color: colors.white,
+  outline: "none",
+  fontSize: "14px",
+  letterSpacing: "0.05em",
+});
 
 export default Contact;

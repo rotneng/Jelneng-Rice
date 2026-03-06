@@ -1,27 +1,32 @@
-const express = require('express');
-const mongoose = require('mongoose'); 
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
+require("dotenv").config();
+
+const contactRoutes = require("./Routes/contact");
 
 const app = express();
 
-app.use(helmet());                
-app.use(morgan('dev'));           
-app.use(cors());                  
-app.use(express.json());          
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/contact", contactRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('🍃 Jelneng Database: Connected Successfully'))
-  .catch((err) => console.error('❌ Database Connection Error:', err));
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log("🍃 Jelneng Database: Connected Successfully"))
+  .catch((err) => console.error("❌ Database Connection Error:", err));
 
-app.get('/api/status', (req, res) => {
-  res.json({ 
-    status: "active", 
-    message: "Jelneng Rice API is connected to MongoDB and ready." 
+app.get("/api/status", (req, res) => {
+  res.json({
+    status: "active",
+    message: "Jelneng Rice API is connected to MongoDB and ready.",
   });
 });
 
