@@ -101,13 +101,15 @@ const ProductsSection = () => {
         />
       </div>
 
+      {/* Product Grid Container */}
       <div
+        className="products-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "80px 40px",
+          gridTemplateColumns: "1fr", // Mobile default
+          gap: "60px 30px",
           padding: "0 5%",
-          maxWidth: "1300px",
+          maxWidth: "1400px",
           margin: "0 auto",
         }}
       >
@@ -187,7 +189,7 @@ const ProductsSection = () => {
               <h3
                 style={{
                   fontFamily: "serif",
-                  fontSize: "26px",
+                  fontSize: "22px", // Slightly reduced for 4-column layout
                   color: colors.dark,
                   fontWeight: "700",
                   marginBottom: "12px",
@@ -215,7 +217,7 @@ const ProductsSection = () => {
                 <span
                   style={{
                     color: colors.gold,
-                    fontSize: "12px",
+                    fontSize: "11px",
                     fontWeight: "700",
                     textTransform: "uppercase",
                     letterSpacing: "0.2em",
@@ -238,6 +240,20 @@ const ProductsSection = () => {
 
       <style>
         {`
+          /* Responsive Grid Logic */
+          @media (min-width: 1024px) {
+            .products-grid {
+              grid-template-columns: repeat(4, 1fr) !important;
+            }
+          }
+
+          @media (min-width: 640px) and (max-width: 1023px) {
+            .products-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+
+          /* Hover Effects */
           .product-card:hover .hover-frame {
             opacity: 1 !important;
             transform: scale(1) !important;
@@ -246,10 +262,6 @@ const ProductsSection = () => {
           .product-card:hover h3 {
             color: #C5A059;
             transition: color 0.4s ease;
-          }
-
-          @media (max-width: 768px) {
-            .product-card { margin-bottom: 20px; }
           }
         `}
       </style>

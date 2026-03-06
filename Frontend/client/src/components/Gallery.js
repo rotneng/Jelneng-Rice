@@ -56,14 +56,17 @@ const Gallery = () => {
           />
         </div>
 
+        {/* Updated Grid Container */}
         <div
+          className="gallery-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            /* Default to 1 column for mobile */
+            gridTemplateColumns: "1fr",
             gap: "25px",
           }}
         >
-          {videos.map((video, index) => (
+          {videos.map((video) => (
             <motion.div
               key={video.id}
               whileHover={{ y: -10 }}
@@ -85,6 +88,7 @@ const Gallery = () => {
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
+                  display: "block",
                   opacity: 0.8,
                 }}
               />
@@ -99,8 +103,8 @@ const Gallery = () => {
               >
                 <div
                   style={{
-                    width: "60px",
-                    height: "60px",
+                    width: "50px", // Scaled down slightly for 4-column layout
+                    height: "50px",
                     borderRadius: "50%",
                     border: `1px solid ${colors.gold}`,
                     display: "flex",
@@ -114,10 +118,10 @@ const Gallery = () => {
                     style={{
                       width: 0,
                       height: 0,
-                      borderTop: "10px solid transparent",
-                      borderLeft: `16px solid ${colors.gold}`,
-                      borderBottom: "10px solid transparent",
-                      marginLeft: "5px",
+                      borderTop: "8px solid transparent",
+                      borderLeft: `14px solid ${colors.gold}`,
+                      borderBottom: "8px solid transparent",
+                      marginLeft: "4px",
                     }}
                   />
                 </div>
@@ -128,16 +132,17 @@ const Gallery = () => {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: "20px",
-                  background: "linear-gradient(transparent, rgba(0,0,0,0.8))",
+                  padding: "15px",
+                  background: "linear-gradient(transparent, rgba(0,0,0,0.9))",
                 }}
               >
                 <span
                   style={{
                     color: colors.white,
-                    fontSize: "16px",
+                    fontSize: "14px", // Reduced for smaller column width
                     fontWeight: "600",
                     display: "block",
+                    lineHeight: "1.3",
                   }}
                 >
                   {video.title}
@@ -187,11 +192,13 @@ const Gallery = () => {
                   background: "none",
                   border: "none",
                   color: "white",
-                  fontSize: "20px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
                   cursor: "pointer",
+                  letterSpacing: "0.1em",
                 }}
               >
-                Close ✕
+                CLOSE ✕
               </button>
 
               <iframe
@@ -202,12 +209,30 @@ const Gallery = () => {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                style={{ borderRadius: "8px" }}
+                style={{ borderRadius: "8px", border: `1px solid ${colors.gold}33` }}
               />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style>
+        {`
+          /* Desktop: 4 videos in a row */
+          @media (min-width: 1024px) {
+            .gallery-grid {
+              grid-template-columns: repeat(4, 1fr) !important;
+            }
+          }
+
+          /* Tablet: 2x2 grid */
+          @media (min-width: 640px) and (max-width: 1023px) {
+            .gallery-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 };
