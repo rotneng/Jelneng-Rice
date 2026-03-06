@@ -89,10 +89,6 @@ const Hero = () => {
       maxWidth: "750px",
       textAlign: "center",
       borderRadius: isMobile ? "24px" : "32px",
-      backgroundColor: "rgba(255, 255, 255, 0.08)",
-      backdropFilter: "blur(20px)",
-      WebkitBackdropFilter: "blur(20px)",
-      border: "1px solid rgba(255, 255, 255, 0.15)",
     },
     buttonContainer: {
       display: "flex",
@@ -134,7 +130,7 @@ const Hero = () => {
     },
     statsGrid: {
       display: "flex",
-      flexWrap: "wrap", 
+      flexWrap: "wrap",
       backgroundColor: "white",
       borderRadius: "24px",
       overflow: "hidden",
@@ -142,7 +138,7 @@ const Hero = () => {
       border: "1px solid rgba(0,0,0,0.03)",
     },
     statBox: {
-      flex: isTablet ? "1 1 50%" : "1", 
+      flex: isTablet ? "1 1 50%" : "1",
       padding: isMobile ? "30px 15px" : "45px 20px",
       textAlign: "center",
       borderRight: isTablet ? "none" : "1px solid #F0F0F0",
@@ -229,22 +225,6 @@ const Hero = () => {
           >
             {slides[index].tagline}
           </motion.p>
-          <div style={styles.buttonContainer}>
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "#D4B374" }}
-              whileTap={{ scale: 0.95 }}
-              style={styles.buttonPrimary}
-            >
-              Explore Process
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, border: "1px solid white" }}
-              whileTap={{ scale: 0.95 }}
-              style={styles.buttonSecondary}
-            >
-              Our Story
-            </motion.button>
-          </div>
         </motion.div>
       </div>
 
