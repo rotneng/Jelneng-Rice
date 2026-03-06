@@ -38,7 +38,6 @@ const Contact = () => {
         }),
       });
 
-      // Removed unused 'data' variable to satisfy strict linters
       if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
@@ -62,7 +61,6 @@ const Contact = () => {
         overflow: "hidden",
       }}
     >
-      {/* Background Glow Effect */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 8, repeat: Infinity }}
