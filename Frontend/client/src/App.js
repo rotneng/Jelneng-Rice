@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-// Component Imports
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import AboutUs from "./components/AboutUs";
 import Products from "./components/ProductsSection";
 import Services from "./components/ServicesSection";
 import Leadership from "./components/Leadership";
-import Testimonials from "./components/TestimonialsSection"; // Import the new component
+import Testimonials from "./components/TestimonialsSection"; 
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Certications from "./components/CertificationsSection";
+import Gallery from "./components/Gallery"; 
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,6 +53,10 @@ function App() {
 
         <section id="certifications" className="scroll-mt-20">
           <Certications />
+        </section>
+
+        <section id="gallery" className="scroll-mt-20">
+          <Gallery />
         </section>
 
         <section id="contact" className="scroll-mt-20">

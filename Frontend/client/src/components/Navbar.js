@@ -12,34 +12,31 @@ const Navbar = () => {
   const { scrollY } = useScroll();
 
   useEffect(() => {
-    const checkDevice = () => {
-      setIsPhone(window.innerWidth <= 480);
-    };
-
+    const checkDevice = () => setIsPhone(window.innerWidth <= 768);
     checkDevice();
     window.addEventListener("resize", checkDevice);
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
-  const navHeight = useTransform(scrollY, [0, 100], ["100px", "80px"]);
-  const navBg = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(10, 30, 20, 1)", "rgba(10, 30, 20, 0.98)"],
-  );
-
   const colors = {
-    dark: "#0A1E14",
+    darkGreen: "#1B5E20",
+    deepForest: "#0A1E14",
     gold: "#C5A059",
     white: "#FFFFFF",
   };
+
+  const navBg = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(10, 30, 20, 1)", "rgba(10, 30, 20, 0.95)"],
+  );
 
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "Our Story", href: "#about" },
     { name: "Our Harvest", href: "#products" },
     { name: "Services", href: "#services" },
-    { name: "Leadership", href: "#team" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -51,34 +48,31 @@ const Navbar = () => {
         left: 0,
         right: 0,
         zIndex: 9999,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        height: isOpen ? "auto" : navHeight,
         backgroundColor: navBg,
         borderBottom: `1px solid ${colors.gold}33`,
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        transition: "height 0.3s ease",
+        height: "80px",
+        display: "flex",
+        alignItems: "center",
       }}
     >
       <div
         style={{
           width: "100%",
-          maxWidth: "1400px",
-          height: "100%",
-          minHeight: "80px",
+          maxWidth: "1200px",
+          margin: "0 auto",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "0 5%",
+          padding: "0 24px",
         }}
       >
         <motion.a href="#home" style={{ textDecoration: "none" }}>
           <span
             style={{
               fontFamily: "serif",
-              fontSize: isPhone ? "1.1rem" : "1.3rem",
+              fontSize: isPhone ? "1.2rem" : "1.5rem",
               color: colors.white,
               fontWeight: "700",
             }}
@@ -97,19 +91,23 @@ const Navbar = () => {
         </motion.a>
 
         {!isPhone && (
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div style={{ display: "flex", gap: "5px" }}>
             {navLinks.map((link) => (
               <motion.a
                 key={link.name}
                 href={link.href}
-                whileHover={{ color: colors.gold }}
+                whileHover={{
+                  color: colors.gold,
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                }}
                 style={{
                   fontSize: "11px",
                   color: colors.white,
                   textDecoration: "none",
-                  padding: "10px 12px",
+                  padding: "8px 15px",
+                  borderRadius: "4px",
                   textTransform: "uppercase",
-                  letterSpacing: "0.15em",
+                  letterSpacing: "0.1em",
                   fontWeight: "600",
                   transition: "color 0.2s ease",
                 }}
@@ -127,34 +125,37 @@ const Navbar = () => {
               background: "none",
               border: "none",
               cursor: "pointer",
-              padding: "10px",
+              position: "relative",
+              zIndex: 10000,
             }}
           >
-            <motion.div
-              animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 6 : 0 }}
+            <div
               style={{
-                width: "24px",
+                width: "25px",
                 height: "2px",
                 background: colors.gold,
-                margin: "5px 0",
+                margin: "6px 0",
+                transition: "0.3s",
+                transform: isOpen ? "rotate(45deg) translate(5px, 6px)" : "",
               }}
             />
-            <motion.div
-              animate={{ opacity: isOpen ? 0 : 1 }}
+            <div
               style={{
-                width: "24px",
+                width: "25px",
                 height: "2px",
                 background: colors.gold,
-                margin: "5px 0",
+                margin: "6px 0",
+                opacity: isOpen ? 0 : 1,
               }}
             />
-            <motion.div
-              animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }}
+            <div
               style={{
-                width: "24px",
+                width: "25px",
                 height: "2px",
                 background: colors.gold,
-                margin: "5px 0",
+                margin: "6px 0",
+                transition: "0.3s",
+                transform: isOpen ? "rotate(-45deg) translate(5px, -7px)" : "",
               }}
             />
           </button>
@@ -162,15 +163,23 @@ const Navbar = () => {
       </div>
 
       <AnimatePresence>
-        {isOpen && isPhone && (
+        {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
               width: "100%",
-              backgroundColor: colors.dark,
-              overflow: "hidden",
+              height: "100vh",
+              backgroundColor: colors.deepForest,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "30px",
             }}
           >
             {navLinks.map((link) => (
@@ -179,15 +188,11 @@ const Navbar = () => {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 style={{
-                  display: "block",
-                  padding: "20px 8%",
+                  fontSize: "24px",
                   color: colors.white,
                   textDecoration: "none",
-                  borderTop: "1px solid rgba(197, 160, 89, 0.1)",
-                  fontSize: "13px",
-                  fontWeight: "600",
+                  fontWeight: "700",
                   textTransform: "uppercase",
-                  letterSpacing: "0.1em",
                 }}
               >
                 {link.name}
