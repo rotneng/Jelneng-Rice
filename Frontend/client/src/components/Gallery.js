@@ -3,39 +3,60 @@ import { motion } from "framer-motion";
 
 const Gallery = () => {
   const videos = [
-    { id: "S_pC8fM-t6Y", title: "GIZ /EU delegatio..." },
-    { id: "5A8u2v_fCrs", title: "Leveraging digital..." },
-    { id: "Hl9uL_i5U9M", title: "December 4, 2025" },
-    { id: "eX9R7tYJ1E4", title: "PROCESSING OF ..." },
+    { id: "S_pC8fM-t6Y", title: "GIZ / EU Delegation Visit" },
+    { id: "5A8u2v_fCrs", title: "Leveraging Digital Agribusiness" },
+    { id: "Hl9uL_i5U9M", title: "Field Operations 2025" },
+    { id: "eX9R7tYJ1E4", title: "Premium Grain Processing" },
   ];
 
   const colors = {
-    darkGreen: "#1B5E20",
+    dark: "#0A1E14",
+    gold: "#C5A059",
     white: "#FFFFFF",
-    youtubeRed: "#FF0000",
-    textWhite: "#FFFFFF",
+    cream: "#FDFCF8",
+    textGray: "#4A4A4A",
   };
 
   return (
-    <section style={{ backgroundColor: colors.white, padding: "80px 0" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <div style={{ textAlign: "center", marginBottom: "50px" }}>
-          <h2
+    <section
+      id="gallery"
+      style={{ backgroundColor: colors.white, padding: "120px 0" }}
+    >
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 5%" }}>
+        <div style={{ textAlign: "center", marginBottom: "80px" }}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             style={{
-              color: colors.darkGreen,
-              fontSize: "32px",
-              fontWeight: "bold",
-              marginBottom: "10px",
+              fontFamily: "serif",
+              fontSize: "clamp(32px, 5vw, 48px)",
+              color: colors.dark,
+              fontWeight: "700",
+              margin: 0,
             }}
           >
-            Our Gallery
-          </h2>
-          <div
+            Visual{" "}
+            <span
+              style={{
+                color: colors.gold,
+                fontStyle: "italic",
+                fontWeight: "300",
+              }}
+            >
+              Gallery
+            </span>
+          </motion.h2>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "80px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
             style={{
-              width: "64px",
-              height: "4px",
-              backgroundColor: colors.darkGreen,
-              margin: "0 auto",
+              height: "3px",
+              backgroundColor: colors.gold,
+              margin: "25px auto 0",
             }}
           />
         </div>
@@ -43,14 +64,18 @@ const Gallery = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: "16px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "25px",
           }}
         >
-          {videos.map((video) => (
+          {videos.map((video, index) => (
             <motion.div
               key={video.id}
-              whileHover={{ scale: 1.03 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
               onClick={() =>
                 window.open(
                   `https://www.youtube.com/watch?v=${video.id}`,
@@ -60,85 +85,32 @@ const Gallery = () => {
               style={{
                 position: "relative",
                 cursor: "pointer",
+                borderRadius: "15px",
                 overflow: "hidden",
-                borderRadius: "4px",
-                aspectRatio: "1/1",
-                backgroundColor: "#000",
-                boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+                aspectRatio: "16/10",
+                backgroundColor: colors.dark,
+                boxShadow: "0 20px 40px rgba(10, 30, 20, 0.1)",
               }}
             >
               <img
                 src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
                 alt={video.title}
                 style={{
-                  position: "absolute",
-                  inset: 0,
                   width: "100%",
                   height: "100%",
-                  objectCover: "cover",
-                  opacity: 0.9,
+                  objectFit: "cover",
+                  opacity: 0.7,
+                  transition: "opacity 0.3s ease",
                 }}
               />
 
               <div
                 style={{
                   position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  padding: "12px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  background:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)",
+                  inset: 0,
+                  background: `linear-gradient(to top, ${colors.dark}CC 0%, transparent 100%)`,
                 }}
-              >
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <div
-                    style={{
-                      width: "24px",
-                      height: "24px",
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(255,255,255,0.2)",
-                    }}
-                  />
-                  <span
-                    style={{
-                      color: colors.textWhite,
-                      fontSize: "12px",
-                      fontWeight: "500",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      maxWidth: "140px",
-                    }}
-                  >
-                    {video.title}
-                  </span>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "2px",
-                    marginTop: "4px",
-                  }}
-                >
-                  {[1, 2, 3].map((i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: "2.5px",
-                        height: "2.5px",
-                        backgroundColor: colors.white,
-                        borderRadius: "50%",
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
+              />
 
               <div
                 style={{
@@ -149,73 +121,66 @@ const Gallery = () => {
                   justifyContent: "center",
                 }}
               >
-                <div
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
                   style={{
-                    width: "56px",
-                    height: "40px",
-                    backgroundColor: colors.youtubeRed,
-                    borderRadius: "12px",
+                    width: "60px",
+                    height: "60px",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    backdropFilter: "blur(5px)",
+                    borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+                    border: `1px solid ${colors.gold}`,
                   }}
                 >
                   <div
                     style={{
                       width: 0,
                       height: 0,
-                      borderTop: "8px solid transparent",
-                      borderLeft: "14px solid white",
-                      borderBottom: "8px solid transparent",
-                      marginLeft: "4px",
+                      borderTop: "10px solid transparent",
+                      borderLeft: `16px solid ${colors.gold}`,
+                      borderBottom: "10px solid transparent",
+                      marginLeft: "5px",
                     }}
                   />
-                </div>
+                </motion.div>
               </div>
 
               <div
                 style={{
                   position: "absolute",
-                  bottom: "10px",
-                  right: "10px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  backgroundColor: "rgba(0,0,0,0.4)",
-                  padding: "4px 8px",
-                  borderRadius: "4px",
+                  bottom: "0",
+                  left: "0",
+                  right: "0",
+                  padding: "20px",
                 }}
               >
-                <div
-                  style={{
-                    width: "14px",
-                    height: "10px",
-                    backgroundColor: colors.youtubeRed,
-                    borderRadius: "2px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 0,
-                      height: 0,
-                      borderTop: "2.5px solid transparent",
-                      borderLeft: "4.5px solid white",
-                      borderBottom: "2.5px solid transparent",
-                    }}
-                  />
-                </div>
                 <span
                   style={{
-                    color: colors.textWhite,
-                    fontSize: "10px",
-                    fontWeight: "bold",
+                    color: colors.white,
+                    fontFamily: "serif",
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    display: "block",
+                    textShadow: "0 2px 4px rgba(0,0,0,0.5)",
                   }}
                 >
-                  YouTube
+                  {video.title}
+                </span>
+                <span
+                  style={{
+                    color: colors.gold,
+                    fontSize: "10px",
+                    textTransform: "uppercase",
+                    letterSpacing: "2px",
+                    fontWeight: "700",
+                    marginTop: "5px",
+                    display: "block",
+                  }}
+                >
+                  Watch Video
                 </span>
               </div>
             </motion.div>
