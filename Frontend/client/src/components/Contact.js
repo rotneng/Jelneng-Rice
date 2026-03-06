@@ -21,9 +21,10 @@ const Contact = () => {
     e.preventDefault();
     setStatus("loading");
 
-    const BASE_URL = window.location.hostname === "localhost" 
-      ? "http://localhost:5000" 
-      : "https://jelneng-backend.onrender.com";
+    const BASE_URL =
+      window.location.hostname === "localhost"
+        ? "http://localhost:5000"
+        : "https://jelneng-backend.onrender.com";
 
     try {
       const response = await fetch(`${BASE_URL}/api/contact/submit`, {
@@ -37,9 +38,8 @@ const Contact = () => {
         }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) { 
+      // Removed unused 'data' variable to satisfy strict linters
+      if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
         setTimeout(() => setStatus("idle"), 5000);
@@ -62,6 +62,7 @@ const Contact = () => {
         overflow: "hidden",
       }}
     >
+      {/* Background Glow Effect */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 8, repeat: Infinity }}
