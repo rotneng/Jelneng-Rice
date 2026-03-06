@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,8 +21,12 @@ const Contact = () => {
     e.preventDefault();
     setStatus("loading");
 
+    const BASE_URL = window.location.hostname === "localhost" 
+      ? "http://localhost:5000" 
+      : "https://jelneng-backend.onrender.com";
+
     try {
-      const response = await fetch("http://localhost:5000/api/contact/submit", {
+      const response = await fetch(`${BASE_URL}/api/contact/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -35,7 +39,7 @@ const Contact = () => {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (response.ok) { 
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
         setTimeout(() => setStatus("idle"), 5000);
@@ -43,7 +47,7 @@ const Contact = () => {
         setStatus("error");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Connection Error:", err);
       setStatus("error");
     }
   };
