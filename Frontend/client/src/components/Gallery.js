@@ -1,20 +1,20 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Gallery = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
   const videos = [
-    { id: "S_pC8fM-t6Y", title: "GIZ / EU Delegation Visit" },
-    { id: "5A8u2v_fCrs", title: "Leveraging Digital Agribusiness" },
-    { id: "Hl9uL_i5U9M", title: "Field Operations 2025" },
-    { id: "eX9R7tYJ1E4", title: "Premium Grain Processing" },
+    { id: "zjK6xhVMwXA", title: "GIZ / EU Delegation Visit" },
+    { id: "2cKk_Q5SpN0", title: "Leveraging Digital Agribusiness" },
+    { id: "b3jVQlAkvDQ", title: "Field Operations 2025" },
+    { id: "3_iPrqFVo6E", title: "Premium Grain Processing" },
   ];
 
   const colors = {
     dark: "#0A1E14",
     gold: "#C5A059",
     white: "#FFFFFF",
-    cream: "#FDFCF8",
-    textGray: "#4A4A4A",
   };
 
   return (
@@ -27,14 +27,12 @@ const Gallery = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             style={{
               fontFamily: "serif",
               fontSize: "clamp(32px, 5vw, 48px)",
               color: colors.dark,
               fontWeight: "700",
-              margin: 0,
             }}
           >
             Visual{" "}
@@ -48,13 +46,10 @@ const Gallery = () => {
               Gallery
             </span>
           </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "80px" }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
+          <div
             style={{
               height: "3px",
+              width: "80px",
               backgroundColor: colors.gold,
               margin: "25px auto 0",
             }}
@@ -71,17 +66,8 @@ const Gallery = () => {
           {videos.map((video, index) => (
             <motion.div
               key={video.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
               whileHover={{ y: -10 }}
-              onClick={() =>
-                window.open(
-                  `https://www.youtube.com/watch?v=${video.id}`,
-                  "_blank",
-                )
-              }
+              onClick={() => setSelectedVideo(video.id)}
               style={{
                 position: "relative",
                 cursor: "pointer",
@@ -93,25 +79,15 @@ const Gallery = () => {
               }}
             >
               <img
-                src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                 alt={video.title}
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  opacity: 0.7,
-                  transition: "opacity 0.3s ease",
+                  opacity: 0.8,
                 }}
               />
-
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: `linear-gradient(to top, ${colors.dark}CC 0%, transparent 100%)`,
-                }}
-              />
-
               <div
                 style={{
                   position: "absolute",
@@ -121,18 +97,17 @@ const Gallery = () => {
                   justifyContent: "center",
                 }}
               >
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
+                <div
                   style={{
                     width: "60px",
                     height: "60px",
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    backdropFilter: "blur(5px)",
                     borderRadius: "50%",
+                    border: `1px solid ${colors.gold}`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    border: `1px solid ${colors.gold}`,
+                    backgroundColor: "rgba(0,0,0,0.3)",
+                    backdropFilter: "blur(4px)",
                   }}
                 >
                   <div
@@ -145,48 +120,94 @@ const Gallery = () => {
                       marginLeft: "5px",
                     }}
                   />
-                </motion.div>
+                </div>
               </div>
-
               <div
                 style={{
                   position: "absolute",
-                  bottom: "0",
-                  left: "0",
-                  right: "0",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
                   padding: "20px",
+                  background: "linear-gradient(transparent, rgba(0,0,0,0.8))",
                 }}
               >
                 <span
                   style={{
                     color: colors.white,
-                    fontFamily: "serif",
                     fontSize: "16px",
                     fontWeight: "600",
                     display: "block",
-                    textShadow: "0 2px 4px rgba(0,0,0,0.5)",
                   }}
                 >
                   {video.title}
-                </span>
-                <span
-                  style={{
-                    color: colors.gold,
-                    fontSize: "10px",
-                    textTransform: "uppercase",
-                    letterSpacing: "2px",
-                    fontWeight: "700",
-                    marginTop: "5px",
-                    display: "block",
-                  }}
-                >
-                  Watch Video
                 </span>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedVideo(null)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              backgroundColor: "rgba(10, 30, 20, 0.95)",
+              zIndex: 1000,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "20px",
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: "100%",
+                maxWidth: "900px",
+                aspectRatio: "16/9",
+                position: "relative",
+              }}
+            >
+              <button
+                onClick={() => setSelectedVideo(null)}
+                style={{
+                  position: "absolute",
+                  top: "-40px",
+                  right: "0",
+                  background: "none",
+                  border: "none",
+                  color: "white",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                }}
+              >
+                Close ✕
+              </button>
+
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ borderRadius: "8px" }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
