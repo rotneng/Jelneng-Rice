@@ -234,9 +234,7 @@ const AboutUs = () => {
               }}
               onMouseEnter={(e) => (e.target.style.color = colors.gold)}
               onMouseLeave={(e) => (e.target.style.color = colors.dark)}
-            >
-              Learn More About Us <span style={{ fontSize: "20px" }}>→</span>
-            </motion.button>
+            ></motion.button>
           </motion.div>
         </div>
       </div>
