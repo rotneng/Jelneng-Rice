@@ -4,35 +4,31 @@ import { motion } from "framer-motion";
 const products = [
   {
     id: 1,
-    name: "Long Grain Parboiled",
+    name: "Premium Long Grain Rice",
     weight: "50kg / 25kg / 10kg",
-    image:
-      "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=1000",
+    image: "https://jelneng.com/img/LO.jpg",
     tag: "Best Seller",
   },
   {
     id: 2,
-    name: "Premium Basmati",
+    name: "Perboiled Rice",
     weight: "5kg / 2kg",
-    image:
-      "https://images.unsplash.com/photo-1723475158232-819e29803f4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmFzbWF0aSUyMHJpY2V8ZW58MHx8MHx8fDA%3D",
+    image: "https://jelneng.com/img/per-rice.jpg",
     tag: "Export Quality",
   },
-  {
-    id: 3,
-    name: "Organic Brown Rice",
-    weight: "5kg / 1kg",
-    image:
-      "https://images.unsplash.com/photo-1561767782-d8e3aa77ef77?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJyb3duJTIwcmljZXxlbnwwfHwwfHx8MA%3D%3D",
-    tag: "Health Choice",
-  },
-  {
+   {
     id: 4,
     name: "Rice Flour",
     weight: "5kg / 10kg",
-    image:
-      "https://images.unsplash.com/photo-1586137712370-9b450509c587?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmljZSUyMGZsb3VyfGVufDB8fDB8fHww",
+    image: "https://jelneng.com/img/rice-flour.jpg",
     tag: "Bakers Choice",
+  },
+  {
+    id: 3,
+    name: "Branding and Packaging",
+    weight: "5kg / 1kg",
+    image: "https://jelneng.com/img/pack.jpg",
+    tag: "Brand's Choice",
   },
 ];
 

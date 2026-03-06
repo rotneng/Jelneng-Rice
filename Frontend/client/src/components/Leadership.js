@@ -3,22 +3,40 @@ import { motion } from "framer-motion";
 
 const team = [
   {
-    name: "Executive Director",
-    role: "Vision & Strategy",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-    socials: { linkedin: "#", twitter: "#", facebook: "#" }
+    name: "Godwin Gogwin",
+    role: "Chief Executive Officer",
+    image: "https://jelneng.com/img/team-1.jpg",
+    socials: { linkedin: "", twitter: "", facebook: "" }
   },
   {
-    name: "Operations Lead",
-    role: "Farm Management",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-    socials: { linkedin: "#", twitter: "#", facebook: "#" }
+    name: "Nendir Gogwin",
+    role: "Chief Financial Officer",
+    image: "https://jelneng.com/img/team-2.jpg",
+    socials: { linkedin: "", twitter: "", facebook: "" }
   },
   {
-    name: "Technical Head",
-    role: "Agro-Innovation",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
-    socials: { linkedin: "#", twitter: "#", facebook: "#" }
+    name: "Gontur Godwin Tongji Esq.",
+    role: "Company Secretary",
+    image: "https://jelneng.com/img/team-6.jpg",
+    socials: { linkedin: "", twitter: "", facebook: "" }
+  },
+  {
+    name: "Gowal Gakdima",
+    role: "Brand/Coporate Communications Manager",
+    image: "https://jelneng.com/img/team-3.jpg",
+    socials: { linkedin: "", twitter: "", facebook: "" }
+  },
+  {
+    name: "Gideon Dokchime Daniel",
+    role: "Accountant",
+    image: "https://jelneng.com/img/team-5.jpg",
+    socials: { linkedin: "", twitter: "", facebook: "" }
+  },
+  {
+    name: "Genesis Wokhishangeh Kassem",
+    role: "Factory Manager",
+    image: "https://jelneng.com/img/team-4.jpeg",
+    socials: { linkedin: "", twitter: "", facebook: "" }
   },
 ];
 
@@ -54,7 +72,7 @@ const Leadership = () => {
             The Visionaries
           </motion.span>
           <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontFamily: "serif", color: colors.dark, fontWeight: "bold", lineHeight: 1 }}>
-            Our <span style={{ fontStyle: "italic", fontWeight: "300" }}>Leadership</span>
+            Our <span style={{ fontStyle: "italic", fontWeight: "300" }}>Team</span>
           </h2>
         </div>
 
@@ -71,7 +89,7 @@ const Leadership = () => {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               viewport={{ once: true }}
               className="team-card"
-              style={{ margin: "0 auto", width: "100%", maxWidth: "450px" }} // Prevents massive images on mobile
+              style={{ margin: "0 auto", width: "100%", maxWidth: "450px" }} 
             >
               <div style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", backgroundColor: colors.dark, borderRadius: "4px" }}>
                 <motion.img
@@ -82,18 +100,18 @@ const Leadership = () => {
                 />
               </div>
 
-              <div style={{ marginTop: "20px" }}>
+              <div style={{ marginTop: "20px", justifyContent: "center", textAlign: "center" }}>
                 <h3 style={{ fontSize: "18px", fontFamily: "serif", color: colors.dark, fontWeight: "700" }}>
                   {member.name}
                 </h3>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "5px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "5px", justifyContent: "center" }}>
                   <div style={{ width: "15px", height: "1px", backgroundColor: colors.light }} />
                   <span style={{ fontSize: "9px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "0.1em", color: colors.light }}>
                     {member.role}
                   </span>
                 </div>
 
-                <div style={{ display: "flex", gap: "15px", marginTop: "15px" }}>
+                <div style={{ display: "flex", gap: "15px", marginTop: "15px", justifyContent: "center" }}>
                   <a href={member.socials.linkedin} className="social-icon"><SocialIcon path={iconPaths.linkedin} /></a>
                   <a href={member.socials.twitter} className="social-icon"><SocialIcon path={iconPaths.twitter} /></a>
                   <a href={member.socials.facebook} className="social-icon"><SocialIcon path={iconPaths.facebook} /></a>
